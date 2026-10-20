@@ -25,8 +25,8 @@
     },
     "win": {
       "target": "nsis",
-      "sign": false,
-      "icon": "icon.ico"
+      "icon": "icon.ico",
+      "signExecutable": false
     },
     "nsis": {
       "oneClick": false,

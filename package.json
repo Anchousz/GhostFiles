@@ -1,0 +1,50 @@
+{
+  "name": "ghost-files",
+  "version": "1.0.1",
+  "description": "Retro-terminal desktop file manager for Windows",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "npm run check && npm test && electron-builder --win",
+    "pack": "npm run check && npm test && electron-packager . GhostFiles --platform=win32 --arch=x64 --out=dist --overwrite",
+    "test": "node --test",
+    "check": "node --check main.js && node --check renderer.js && node --check preload.js && node --check file-ops.js"
+  },
+  "author": "Andrey",
+  "license": "MIT",
+  "devDependencies": {
+    "@electron/packager": "20.3.0",
+    "electron": "44.9.1",
+    "electron-builder": "26.15.3"
+  },
+  "build": {
+    "appId": "com.ghost.files",
+    "productName": "GhostFiles",
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "target": "nsis",
+      "sign": false,
+      "icon": "icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true
+    },
+    "files": [
+      "**/*",
+      "!tests/**",
+      "!README*",
+      "!INSTALL_ICONS_RU.md",
+      "!WINDOWS_RELEASE_CHECKLIST.md",
+      "!package-lock.json",
+      "!*.log",
+      "!GITHUB_PUBLISH_RU.md"
+    ]
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  }
+}
